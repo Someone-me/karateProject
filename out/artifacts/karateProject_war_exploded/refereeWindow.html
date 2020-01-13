@@ -1,0 +1,205 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <style type="text/css">
+        .container-fluid{background-color:#2F4056;}
+        .navbar-header h3{color:#ffffff; padding-left:1em;}
+        .container{width:100%; height:100%;background-color:#F2F2F2}
+        .col-row-first{width:95%;height:4em;background-color:#ffffff;margin: 0 auto;position:relative;top:1.5em;}
+        .col-row-first table{position:relative;top:1em;left:1em;}
+        .col-row-first tr td select{width:20em;height:2em;border:1px solid #DDDDDD;}
+        .col-row-second{width:95%;background-color:#ffffff;margin: 0 auto;margin-top:4em;}
+        .table1{width:98%; margin:0 auto;background-color:#dddddd;position:relative;top:2em;}
+        .table1 tr{border:none;width:100%;height:4em;}
+        .table1 tr td{padding-left:1em;}
+        .input-group1{width:400px;}
+        .table1 select{width:15em;height:2em;border:1px solid #DDDDDD;margin-left:1em;}
+        .table-striped{margin-top:2em}
+        .table-striped td{text-align:center;}
+        .table-striped select {width:17em;height:3em;border:1px solid #DDDDDD;}
+        .select , .submit{background-color:#009688; width:120px;height:30px;border:none;color:#ffffff;margin-right:-3em;}
+        .input-group{width:300px;}
+        .table-hover2{width:98%; margin:0 auto;margin-top:5em;}
+        .table-hover2 tr td{padding-top:2em;}
+    </style>
+
+    <script>
+        function level()
+        {
+            $.post("playerLevelServlet",{},function (data) {
+                var list=' <select id="level"> <option>请选择</option>';
+                for(var i=1;i<data.length;i++)
+                {
+                    var lis='<option >'+data[i].level+'</option>';
+                    list+=lis;
+                }
+                list+='</select>';
+                $("#levelshow").html(list);
+            },"json")
+        }
+        function score()
+        {
+            var refereeNumber=$("#refereeNumber").val();
+            var type=$("#type").val();
+            var level=$("#level").val();
+            var typeNumber=$("#typeNumber").val();
+            var playerName=$("#playerName").val();
+            var typeName=$("#typeName").val();
+            var technicalPoints=$("#technicalPoints").val();
+            var motionScore=$("#motionScore").val();
+
+            var flag=confirm("确认信息\n姓名："+playerName+"\n型名："+typeName+"\n技术分："+technicalPoints+"\n运动能力分："+motionScore);
+            if(flag)
+            {
+                $.post("refereeWindowsServlet",{"refereeNumber":refereeNumber,"type":type,"level":level,"typeNumber":typeNumber
+                    ,"playerName":playerName,"typeName":typeName,"technicalPoints":technicalPoints,
+                    "motionScore":motionScore},function (data) {
+
+                })
+            }else {
+
+            }
+
+
+        }
+        window.onload=function () {
+            level();
+            $("#submit").on('click',function () {
+                score();
+            })
+        }
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse  navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <h3>裁判评分</h3>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class=" col-row-first">
+            <table>
+                <tr>
+                    <td width="100">裁判号</td>
+                    <td><select id="refereeNumber">
+                        <option>请选择</option>
+                        <option>1号</option>
+                        <option>2号</option>
+                        <option>3号</option>
+                        <option>4号</option>
+                        <option>5号</option>
+                        <option>6号</option>
+                        <option>7号</option>
+                    </select></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-row-second">
+            <table class="table1">
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="input-group1">
+                        <span>比赛类型</span>
+                         <div >
+                            <select id="type">
+                                <option>请选择</option>
+                                <option>个人组手</option>
+                                <option>个人型</option>
+                                <option>团体型</option>
+                            </select>
+                         </div>
+                    </div>
+                    </td>
+                    <td><div class="input-group1">
+                        <span >比赛级别</span>
+                        <div  id="levelshow">
+
+                        </div>
+<!--                        <select>-->
+<!--                            <option>请选择</option>-->
+<!--                            -->
+<!--                        </select>-->
+                    </div>
+                    </td>
+                    <td><div class="input-group1">
+                        <span>型 </span>
+                        <div>
+                            <select id="typeNumber">
+                                <option>请选择</option>
+                                <option>第一套型</option>
+                                <option>第二套型</option>
+                                <option>第三套型</option>
+                                <option>第四套型</option>
+                                <option>第五套型</option>
+                            </select>
+                        </div>
+                    </div></td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table table-hover table-hover2">
+                <thead>
+                <tr>
+                    <th><div class="input-group" style="padding-bottom:1em;">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">选手号 <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">选手号</a></li>
+                                <li><a href="#">选手姓名</a></li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control" aria-label="..." id="playerName">
+                    </div>
+                    </th>
+                    <th> <div class="input-group" style="padding-bottom:1em;">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">型名</button>
+                    </span>
+                        <input type="text" class="form-control" id="typeName">
+                    </div>
+                    </th>
+<!--                    <th><button type="button" class="select"style="margin-bottom:1em;">查询</button></th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td width="430" ><div class="input-group"style="padding-top:2em;">
+               <span class="input-group-btn">
+                <button class="btn btn-default" type="button">技术能力分数</button>
+               </span>
+                        <input type="text" class="form-control" placeholder="请输入技术能力分数" id="technicalPoints">
+                    </div>
+                    </td>
+                    <td width="430"><div class="input-group"style="padding-top:2em;">
+               <span class="input-group-btn">
+                <button class="btn btn-default" type="button">运动能力分数</button>
+               </span>
+                        <input type="text" class="form-control" placeholder="请输入运动能力分数" id="motionScore">
+                    </div>
+                    </td>
+                    <td><button type="button" class="submit"style="margin-top:2em;" id="submit">提交</button></td>
+                </tr>
+                </tbody>
+            </table>
+            <table  style=" height:1em;width: 25%;"></table>
+        </div>
+    </div>
+    <div  class="col-md-10" style=" height:3em;width: 25%;"></div>
+</div>
+</body>
+</html>

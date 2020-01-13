@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload=function () {
+            $.post("displayListServlet",{},function (data) {
+                var list='<table class="table table-hover"><tr><th>姓名</th><th>手机号</th><th>身份证号</th></tr>';
+                for(var i=0;i<data.length;i++)
+                {
+                    var lis='<tr><td>'+data[i].refereeName+'</td><td>'+data[i].phone+'</td><td>'+data[i].refereeId+'</td></tr>';
+                    list+=lis;
+                }
+                list+='</table>';
+
+                $("#display").html(list);
+            },"json")
+        }
+    </script>
+</head>
+<body>
+        <div id="display"></div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        function Check() {
+            var id_array = new Array();
+            $('input:checkbox[name=item]:checked').each(function(){
+                alert("111");
+                alert($(this).attr('id'));
+                id_array.push($(this).attr('id'));//向数组中添加元素
+            });
+
+            alert(id_array);
+            alert(id_array[1]);
+
+        }
+
+        window.onload=function (ev) {
+            $("#submit").on('click',function (t) {
+                Check();
+            })
+        }
+
+
+    </script>
+</head>
+<body>
+<table id="Tab" style="border: solid 1px red">
+        <tr>
+            <td></td>
+            <td>ID</td> 
+            <td>姓名</td>
+            <td>年龄</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="item" id="aaa" value="222"/></td>
+            <td  name="Sid">@i</td>
+            <td  name="Sname">小明 @i</td>
+            <td>1 @i</td>
+        </tr>
+        <tr>
+                <td><input type="checkbox" name="item" id="bbb"/></td>
+                <td  name="Sid">@i</td>
+                <td  name="Sname">小明 @i</td>
+                <td>1 @i</td>
+         </tr>
+         <tr>
+                <td><input type="checkbox" name="item" id="ccc"/></td>
+                <td  name="Sid">@i</td>
+                <td  name="Sname">小明 @i</td>
+                <td>1 @i</td>
+         </tr>
+</table>
+<input type="button" id="submit" value="提交" />
+
+</body>
+</html>

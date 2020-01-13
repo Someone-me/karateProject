@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大图片</title>
+    <script src="js/jquery.min.js"></script>
+
+    <script>
+        function bEnlargePhoto() {
+            $.post("bEnlargePhotoServlet",{},function (data) {
+                var list='<img style="height: 500px;width: 580px" src="'+data[0].identityCardReversePic+'">';
+                $("#enlarge").html(list);
+            },"json")
+        }
+        window.onload= function () {
+            bEnlargePhoto();
+        }
+    </script>
+</head>
+<body>
+<div id="enlarge">
+
+</div>
+</body>
+</html>

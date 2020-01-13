@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加赛事信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="css/layui.css">
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <script src="layDate/laydate/laydate.js"></script>
+    <style>
+        .format{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+
+        function date_()
+        {
+            laydate.render({
+                elem: '#TeamStartTime' //指定元素
+                ,type: 'datetime'
+            });
+            laydate.render(
+                {
+                    elem: '#TeamEndTime' //指定元素
+                    ,type: 'datetime'
+                }
+            );
+        }
+        function change(date) {
+            var dt=new Date(date)//date日期类型
+            var  time= dt.getTime();   //毫秒时间戳
+            return time;
+        }
+        function addCompetitionInfo()
+        {
+            var date=$("#TeamStartTime").val();
+            var date1=$("#TeamEndTime").val();
+
+            $.post("addCompetitionInfoServlet",
+                          {"teamName":$("#teamName").val(),"teamOrganizer":$("#teamOrganizer").val(),
+                           "teamUndertake":$("#teamUndertake").val(),"teamCoOrganizer":$("#teamCoOrganizer").val(),
+                           "teamPavilion":$("#teamPavilion").val(),"teamStartTime":change(date),
+                           "teamEndTime":change(date1),"teamLevel":$("#TeamLevel").val(),
+                           "teamFormat":$("#TeamFormat").val()},
+                    function (data) {
+                    if(data!=null)
+                    {
+                        alert("添加成功");
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                    }
+                    },"json")
+        }
+        window.onload=function () {
+            date_();
+            $("#addCompetitionInfo").on('click',function () {
+                addCompetitionInfo();
+            })
+        }
+    </script>
+</head>
+
+<body>
+<div >
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">赛事名称：</a><input type="text" class="form-control  col-lg-7 format"  id="teamName" style="width: 260px">
+    </div>
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">赛事团队：</a><input  class="form-control col-lg-7 format" id="teamOrganizer" style="width: 260px">
+    </div>
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">主办方：</a><input type="text" class="form-control col-lg-7 format" id="teamUndertake" style="width: 260px">
+    </div>
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">合作团队：</a><input type="text" class="form-control col-lg-7 format" id="teamCoOrganizer" style="width: 260px">
+    </div>
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">比赛地点：</a><input type="text" class="form-control col-lg-7 format"  id="teamPavilion" style="width: 260px">
+    </div>
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">开始时间：</a><input type="text" class="form-control col-lg-7 format"  id="TeamStartTime" style="width: 260px">
+    </div>
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">结束时间：</a><input type="text" class="form-control col-lg-7 format"  id="TeamEndTime" style="width: 260px">
+    </div>
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">比赛类型：</a><input type="text" class="form-control col-lg-7 format"  id="TeamLevel" style="width: 260px">
+    </div>
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">比赛形式：</a><input type="text" class="form-control col-lg-7 format"  id="TeamFormat" style="width: 260px">
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <!--                <div class="icheck-primary">-->
+            <!--                </div>-->
+        </div>
+        <!-- /.col -->
+        <div class="col-3">
+            <button  id="addCompetitionInfo" class="btn btn-primary btn-block">添加</button>
+        </div>
+        <!-- /.col -->
+    </div>
+</div>
+</body>
+</html>

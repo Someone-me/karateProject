@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>安徽空手道后台管理系统</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+<!--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+<!--    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">-->
+
+    <script src="js/jquery.min.js"></script>
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparklines/sparkline.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+    <script src="dist/js/demo.js"></script>
+    <script src="layer/layer/layer.js"></script>
+
+    <script>
+        // 删除操作
+        function delete_(btn) {
+            var id=btn.value;
+            var flag=confirm("确定删除该裁判吗？");
+            if(flag)
+            {
+                $.post("deleteRefreeServlet",{"id":id},function () {
+                    AllrefereeInfo();
+                })
+            }
+        }
+        // 登陆判断
+        function loginJudge()
+        {
+            $.post("loginJudgementServlet",{},function (data) {
+                if (data!=null)
+                {
+                    $("#adminname").html(data.adminname);
+                }
+                else
+                {
+                    window.location.href="adminLogin.html";
+                }
+            },"json")
+        }
+        //传查看名单的值
+        function viewList(id) {
+            var Id=id.value;
+            $.post("viewListServlet",{"id":Id},function (t) {
+            })
+
+            layer.open({
+                title:'裁判名单',
+                type: 2,
+                skin: 'layui-layer-demo', //样式类名
+                closeBtn: 1, //不显示关闭按钮
+                anim: 2,
+                shadeClose: true, //开启遮罩关闭
+                area : ['500px' , '400px'],
+                content: 'viewList.html',
+
+                end: function () {
+                    location.reload();
+                }
+            });
+
+        }
+        function deletePanel(id) {
+            var Id=id.value;
+
+            var flag=confirm("确定删除该裁判小组信息吗？")
+            if(flag)
+            {
+                $.post("deletePanelServlet",{"id":Id},function () {
+                    alert("success");
+                    panelInfo();
+                })
+            }
+            else
+            {
+            }
+        }
+        function clearList(Id) {
+            var id=Id.value;
+
+            $.post("recoveryStateServlet",{"id":id},function (t) {
+                $("#cover").html("");
+                panelInfo();
+            })
+
+        }
+        function panelInfo() {
+            $.post("allJuryPanelServlet",{},function (data) {
+                var list='<table class="table table-hover"><tr><th>比赛场地及信息</th><th>操作</th></tr>'
+                for(var i=0;i<data.length;i++) {
+                    if(data[i].status==1)
+                    {
+                        var lis = '<tr><td>' + data[i].position + '</td>' +
+                            '<td><button class="btn btn-default" onclick="viewList(this)" value="' + data[i].id + '">查看名单</button></td>' +
+                            '<td><div id="cover"><button  class="btn btn-default" onclick="clearList(this)" value="' + data[i].id + '">恢复待分组状态</button></div></td>' +
+                            '<td><button class="btn btn-default" onclick="deletePanel(this)" value="' + data[i].id + '">删除</button></td></tr>';
+                        list += lis;
+                    }else
+                    {
+                        var lis = '<tr><td>' + data[i].position + '</td>' +
+                            '<td><button class="btn btn-default" onclick="viewList(this)" value="' + data[i].id + '">查看名单</button></td>' +
+                            '<td><button class="btn btn-default" onclick="deletePanel(this)" value="' + data[i].id + '">删除</button></td></tr>';
+                        list += lis;
+                    }
+
+                }
+                list+='</table>';
+                $("#juryPanel").html(list);
+            },"json")
+        }
+
+        function addreferee()
+        {
+            layer.open({
+                title:'添加裁判',
+                type: 2,
+                skin: 'layui-layer-demo', //样式类名
+                closeBtn: 1, //不显示关闭按钮
+                anim: 2,
+                shadeClose: true, //开启遮罩关闭
+                area : ['300px' , '400px'],
+                content: 'addReferee.html',
+
+                end: function () {
+                    location.reload();
+                }
+            });
+        }
+        //生成裁判小组
+        function    Panel()
+        {
+            layer.open({
+                title:'生成裁判小组',
+                type: 2,
+                skin: 'layui-layer-demo', //样式类名
+                closeBtn: 1, //不显示关闭按钮
+                anim: 2,
+                shadeClose: true, //开启遮罩关闭
+                area : ['300px' , '400px'],
+                content: 'addJuryPanel.html',
+
+                end: function () {
+                    location.reload();
+                }
+            });
+        }
+        function addPanel() {
+            var id_array = new Array();
+            $('input:checkbox[name=item]:checked').each(function(){
+                id_array.push($(this).attr('id'));//向数组中添加元素
+            });
+            if(id_array.length==0)
+            {
+                alert("需要至少选中一个裁判哦！")
+            }
+            else{
+                var position;
+                layer.prompt(
+                    {
+                        title: '请输入小组信息',
+                        formType: 2, //输入框类型，支持0（文本）默认1（密码）2（多行文本）
+                        value: '', //初始时的值，默认空字符
+                        maxlength: 140, //可输入文本的最大长度，默认500
+                    },function(value,index)
+                    {
+                        position=value;
+                        $.ajax({
+                            url : "addToJuryPanelServlet_one",
+                            data : {
+                                "id_array" : id_array,
+                                "position":position
+                            },
+                            dataType : 'json',
+                            type : "post",
+                            traditional: true,//属性在这里设置,传数组所设置
+                            success : function(message) {
+                            },
+                        });
+                        layer.close(index);
+                    })
+            }
+        }
+        function AllrefereeInfo() {
+            $.post("allRefereeInfoServlet", {}, function (data) {
+
+                var list = '<table class="table table-hover"><tr><th style="text-align:center"><button class="btn btn-default" onclick="addPanel()">添加到小组</button></th><th>姓名</th><th>手机号</th><th>身份证号</th><th>状态</th></tr>'
+                for (var i = 0; i < data.length; i++) {
+                    var status=null;
+                    if(data[i].status!=0)
+                    {
+                        status="忙碌";
+                        var lis = '<td></td><td>' +
+                            data[i].refereeName + '</td><td>' + data[i].phone + '</td><td>' + data[i].refereeId +
+                            '</td><td style="color: red">' +status + '</td><td><button class="btn btn-default" onclick="delete_(this)" value="'
+                            + data[i].id + '">删除</button></td></tr>';
+                    }else
+                    {
+                        status="待分组";
+                        var lis = '<tr><td style="text-align:center"><input type="checkbox" name="item" id="'+data[i].id+'" style="height: 20px;width: 20px"/></td><td>'
+                            + data[i].refereeName + '</td><td>' + data[i].phone + '</td><td>' + data[i].refereeId
+                            + '</td><td>' +status + '</td><td><button class="btn btn-default" onclick="delete_(this)" value="'
+                            + data[i].id + '">删除</button></td></tr>';
+                    }
+
+                    list += lis;
+                }
+                list += '</table>';
+                $("#juryPanel").html(list);
+            }, "json")
+        }
+
+        window.onload=function () {
+            loginJudge();
+            panelInfo();
+
+            $("#addreferee").on('click',function () {
+                addreferee();
+            })
+
+            $("#query").on('click',function () {
+                Panel();
+            })
+            $("#queryAll").on('click',function () {
+                AllrefereeInfo();
+            })
+            $("#queryPanel").on('click',function () {
+                panelInfo();
+            })
+            }
+    </script>
+    <script>
+        // 退出登录
+        function logout()
+        {
+            $.post("logoutServlet",{"adminname":$("#adminname").val()})
+        }
+        window.onbeforeunload=function () {
+            logout();
+        }
+    </script>
+</head>
+<style>
+    ul li p{
+        font-size: 15px;
+    }
+</style>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+        <!-- Right navbar links -->
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="" class="brand-link">
+            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">安徽空手道协会</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar" style="width: 250px">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block"><div id="adminname"></div></a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav  nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                比赛信息
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="competitionInfo.html" class="nav-link">
+                                    &ensp;&ensp;<p>赛事信息</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="playerInformation.html" class="nav-link">
+                                    &ensp;&ensp;<p>报名选手</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="juryPanel.html" class="nav-link">
+                                    &ensp;&ensp;<p>裁判小组</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="RefereeScore.html" class="nav-link">
+                                    &ensp;&ensp;<p>裁判评分</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="groupInformation.html" class="nav-link">
+                                    &ensp;&ensp;<p> 分组信息</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                文件和图片管理
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="pictureUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>图片上传</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="fileUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>文件上传</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                新闻中心
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="newsUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>新闻上传</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="associationNewsUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>协会动态信息</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                通知公告
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="matchNewsUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>比赛通知</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="trainNewsUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>培训通知</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                视频管理
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="videoUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>视频上传</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                图片管理
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="matchPictureUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>赛事图片上传</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="activityPictureUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>活动图片上传</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+                <ul class="nav  nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="communityInfo.html" class="nav-link">
+                            <p>
+                                社团信息
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="adminSetting.html" class="nav-link">
+                            <p>
+                                管理员设置
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+</div>
+
+<!--主体内容-->
+<div class="content-wrapper" style="padding-top: 5px;padding-left: 10px">
+    <div class="btn-group btn-group-justified" role="group" >
+
+        <button type="button" class="btn btn-primary" id="query"  style=";margin-right: 3px">生成裁判小组</button>
+        <button type="button" class="btn btn-primary " id="queryPanel"  style=";margin-right: 3px">显示裁判小组</button>
+        <button type="button" class="btn btn-primary " id="queryAll"  >显示全部裁判</button>
+    </div>
+    <div class="float-right" style="margin-right: 5px">
+        <button  type="button" class="btn btn-primary " id="addreferee"> 添加裁判</button>
+    </div>
+    <div id="juryPanel" style="margin-top: 5px">
+
+    </div>
+    <div id="display" class="float-left" style="margin-top: 5px;margin-right: 5px">
+
+    </div>
+
+</div>
+
+
+<footer class="main-footer">
+    <strong> <a href="#">安徽空手道协会</a></strong>
+    <div class="float-right d-none d-sm-inline-block">
+        <b>HFUU</b>
+    </div>
+</footer>
+
+<div>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+
+</div>
+
+
+</body>
+
+</html>

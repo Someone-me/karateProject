@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>安徽空手道后台管理系统</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+<!--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparklines/sparkline.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+    <script src="dist/js/demo.js"></script>
+
+
+    <script>
+        // 登陆判断
+        function loginJudge()
+        {
+            $.post("loginJudgementServlet",{},function (data) {
+                if (data!=null)
+                {
+                    $("#adminname").html(data.adminname);
+                }
+                else
+                {
+                    window.location.href="adminLogin.html";
+                }
+            },"json")
+        }
+        // function display()
+        // {
+        //     $.post("typeRefereeScoreServlet",{},function (data) {
+        //         var list='<table class="table table-hover"><tr><th>选手</th><th>型名</th><th>1号</th><th>2号</th><th>3号</th><th>4号</th><th>5号</th><th>6号</th><th>7号</th><th>总分</th><th>分值</th><th>结果</th><th>总得分</th></tr>';
+        //         for(var i=0;i<data.length;i++)
+        //         {
+        //             var Ttotal=Math.round(parseFloat(data[i].ttotal*0.7)*100)/100;
+        //             var total=Math.round(parseFloat(data[i].total*0.3)*100)/100;
+        //             var lst='<tr><td rowspan="2" style="text-align: center;vertical-align: middle">'+data[i].playerId+'</td><td rowspan="2" style="text-align: center;vertical-align: middle">'+data[i].typename+'</td><td>'+data[i].treferee1+'</td><td>'+data[i].treferee2+'</td><td>'+data[i].treferee3+'</td><td>'+data[i].treferee4+'</td><td>'+data[i].treferee5+'</td><td>'+data[i].treferee6+'</td><td>'+data[i].treferee7+'</td><td>'+data[i].ttotal+'</td><td>0.7</td><td>'+ Ttotal+'</td><td rowspan="2" style="text-align: center;vertical-align: middle">'+data[i].result+'</td></tr>'+
+        //                 '<tr><td>'+data[i].referee1+'</td><td>'+data[i].referee2+'</td><td>'+data[i].referee3+'</td><td>'+data[i].referee4+'</td><td>'+data[i].referee5+'</td><td>'+data[i].referee6+'</td><td>'+data[i].referee7+'</td><td>'+data[i].total+'</td><td>0.3</td><td>'+ total+'</td></tr>'
+        //              list+=lst;
+        //         }
+        //         $("#showall").html(list);
+        //     },"json")
+        //
+        // }
+
+        function query()
+        {
+            var type=$("#type").val();
+            var typenumber=$("#typenumber").val();
+            var level=$("#level").val();
+            $.post("RefereeScoreServlet",{"type":type,"level":level,"typenumber":typenumber},function (data) {
+                var list='<table class="table"><tr><th>选手</th><th>型名</th><th>组号</th><th>1号</th><th>2号</th><th>3号</th><th>4号</th><th>5号</th><th>6号</th><th>7号</th><th>总分</th><th>分值</th><th>结果</th><th>总得分</th></tr>';
+                for(var i=0;i<data.length;i++)
+                {
+                    var Ttotal=Math.round(parseFloat(data[i].ttotal*0.7)*100)/100;
+                    var total=Math.round(parseFloat(data[i].total*0.3)*100)/100;
+                    var lst='<tr><td rowspan="2" style="text-align: center;vertical-align: middle">'+data[i].playerId+'</td><td rowspan="2" style="text-align: center;vertical-align: middle">'+data[i].typename+'</td><td rowspan="2" style="text-align: center;vertical-align: middle">'+data[i].status+'</td><td>'+data[i].treferee1+'</td><td>'+data[i].treferee2+'</td><td>'+data[i].treferee3+'</td><td>'+data[i].treferee4+'</td><td>'+data[i].treferee5+'</td><td>'+data[i].treferee6+'</td><td>'+data[i].treferee7+'</td><td>'+data[i].ttotal+'</td><td>0.7</td><td>'+ Ttotal+'</td><td rowspan="2" style="text-align: center;vertical-align: middle">'+data[i].result+'</td></tr>'+
+                        '<tr><td>'+data[i].referee1+'</td><td>'+data[i].referee2+'</td><td>'+data[i].referee3+'</td><td>'+data[i].referee4+'</td><td>'+data[i].referee5+'</td><td>'+data[i].referee6+'</td><td>'+data[i].referee7+'</td><td>'+data[i].total+'</td><td>0.3</td><td>'+ total+'</td></tr>'
+                    list+=lst;
+                }
+                $("#showall").html(list);
+            },"json")
+        }
+        function display1()
+        {
+            $.post("playerLevelServlet",{},function (data) {
+                var list=' <select id="level" class="btn btn-default dropdown-toggle"  aria-haspopup="true" aria-expanded="true"> <option>比赛级别</option>';
+                for(var i=0;i<data.length;i++)
+                {
+                    var lis='<option >'+data[i].level+'</option>';
+                    list+=lis;
+                }
+                list+='</select>';
+                $("#playerLevel").html(list);
+            },"json");
+        }
+        window.onload=function () {
+            loginJudge();
+            display1();
+            $("#display").on('click',function () {
+               query();
+            })
+        }
+    </script>
+    <script>
+        // 退出登录
+        function logout()
+        {
+            $.post("logoutServlet",{"adminname":$("#adminname").val()})
+        }
+        window.onbeforeunload=function () {
+            logout();
+        }
+    </script>
+
+</head>
+
+<style>
+    ul li p{
+        font-size: 15px;
+    }
+</style>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+        <!-- Right navbar links -->
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="" class="brand-link">
+            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">安徽空手道协会</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar" style="width: 250px">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block"><div id="adminname"></div></a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav  nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                比赛信息
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="competitionInfo.html" class="nav-link">
+                                    &ensp;&ensp;<p>赛事信息</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="playerInformation.html" class="nav-link">
+                                    &ensp;&ensp;<p>报名选手</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="juryPanel.html" class="nav-link">
+                                    &ensp;&ensp;<p>裁判小组</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="RefereeScore.html" class="nav-link">
+                                    &ensp;&ensp;<p>裁判评分</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="groupInformation.html" class="nav-link">
+                                    &ensp;&ensp;<p> 分组信息</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                文件和图片管理
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="pictureUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>图片上传</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="fileUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>文件上传</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                新闻中心
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="newsUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>新闻上传</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="associationNewsUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>协会动态信息</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                通知公告
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="matchNewsUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>比赛通知</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="trainNewsUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>培训通知</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                视频管理
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="videoUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>视频上传</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item has-treeview menu-open" style="background-color:#343a40;">
+                        <a href="#" class="nav-link active">
+                            <p>
+                                图片管理
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="matchPictureUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>赛事图片上传</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="activityPictureUpload.jsp" class="nav-link">
+                                    &ensp;&ensp;<p>活动图片上传</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+                <ul class="nav  nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="communityInfo.html" class="nav-link">
+                            <p>
+                                社团信息
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="adminSetting.html" class="nav-link">
+                            <p>
+                                管理员设置
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+</div>
+<!--主体内容-->
+<div class="content-wrapper" >
+    <div class="btn-group btn-group-justified" role="group" style="padding-left:5px;padding-top: 5px">
+        <select id="type" class="btn btn-default dropdown-toggle"  aria-haspopup="true" aria-expanded="true">
+            <option >比赛类型</option>
+            <option >个人组手</option>
+            <option >个人型</option>
+            <option >团体型</option>
+        </select>
+        <div id="playerLevel">
+
+        </div>
+        <select id="typenumber" class="btn btn-default dropdown-toggle"  aria-haspopup="true" aria-expanded="true">
+            <option >演练内容</option>
+            <option >第一套型</option>
+            <option >第二套型</option>
+            <option >第三套型</option>
+            <option >第四套型</option>
+            <option >第五套型</option>
+        </select>
+        <button id="display" class="btn btn-primary" style="margin-left: 3px">显示评分</button>
+    </div>
+
+    <div id="showall">
+        <div class="page-header">
+<!--            <h1>选择想要查询的类型 查看分组</h1>-->
+        </div>
+    </div>
+</div>
+
+
+
+
+<footer class="main-footer">
+    <strong> <a href="#">安徽空手道协会</a></strong>
+    <div class="float-right d-none d-sm-inline-block">
+        <b>HFUU</b>
+    </div>
+</footer>
+
+<div>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+
+</div>
+
+
+</body>
+
+</html>

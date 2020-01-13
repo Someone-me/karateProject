@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="karateProject:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="35bd7749-a164-4613-9d63-afddfc34ec8d" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectId" id="1UpgtyZYABfdKVuGLjtzfVlO5go" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.31034482" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="servlet.test" />
+      <recent name="domain.test" />
+      <recent name="cn.test" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\文件\newKarate\karate\web\notification\images\2020\1" />
+      <recent name="F:\文件\newKarate\karate\src\cn\anhui\karate\web\servlet" />
+      <recent name="F:\文件\newKarate\karate\web" />
+      <recent name="F:\文件\newKarate\karate\web\WEB-INF\lib" />
+      <recent name="F:\ideaworkspace\karateProject\web" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.29">
+    <configuration name="addJuryPanelServlet.clearing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="karateProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="servlet.juryPanel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="servlet.juryPanel" />
+      <option name="MAIN_CLASS_NAME" value="servlet.juryPanel.addJuryPanelServlet" />
+      <option name="METHOD_NAME" value="clearing" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="addJuryPanelServlet.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="karateProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="servlet.juryPanel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="servlet.juryPanel" />
+      <option name="MAIN_CLASS_NAME" value="servlet.juryPanel.addJuryPanelServlet" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="allJuryPanelServlet.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="karateProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="servlet.juryPanel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="servlet.juryPanel" />
+      <option name="MAIN_CLASS_NAME" value="servlet.juryPanel.allJuryPanelServlet" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="allRefereeInfoServlet.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="karateProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="servlet.juryPanel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="servlet.juryPanel" />
+      <option name="MAIN_CLASS_NAME" value="servlet.juryPanel.allRefereeInfoServlet" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="deletePanelServlet.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="karateProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="servlet.juryPanel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="servlet.juryPanel" />
+      <option name="MAIN_CLASS_NAME" value="servlet.juryPanel.deletePanelServlet" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.29" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.29" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <deployment>
+        <artifact name="karateProject:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/karate_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Tomcat_9_0_29_karateProject" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51168" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="karateProject:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="_karateProject" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51181" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.addJuryPanelServlet.test" />
+      <item itemvalue="JUnit.addJuryPanelServlet.clearing" />
+      <item itemvalue="JUnit.allJuryPanelServlet.test" />
+      <item itemvalue="JUnit.allRefereeInfoServlet.test" />
+      <item itemvalue="JUnit.deletePanelServlet.test" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.29" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.deletePanelServlet.test" />
+        <item itemvalue="JUnit.addJuryPanelServlet.test" />
+        <item itemvalue="JUnit.allRefereeInfoServlet.test" />
+        <item itemvalue="JUnit.allJuryPanelServlet.test" />
+        <item itemvalue="JUnit.addJuryPanelServlet.clearing" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="35bd7749-a164-4613-9d63-afddfc34ec8d" name="Default Changelist" comment="" />
+      <created>1576059168540</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576059168540</updated>
+      <workItem from="1576059171951" duration="1385000" />
+      <workItem from="1576060715423" duration="9709000" />
+      <workItem from="1576110571828" duration="2840000" />
+      <workItem from="1576120805960" duration="3202000" />
+      <workItem from="1576217089267" duration="10452000" />
+      <workItem from="1576385718439" duration="19478000" />
+      <workItem from="1576456993988" duration="27174000" />
+      <workItem from="1576544300169" duration="19881000" />
+      <workItem from="1576629837537" duration="18513000" />
+      <workItem from="1576721187484" duration="14373000" />
+      <workItem from="1576803372379" duration="17212000" />
+      <workItem from="1577062148772" duration="28094000" />
+      <workItem from="1577149396607" duration="29586000" />
+      <workItem from="1577234373492" duration="26602000" />
+      <workItem from="1577323001505" duration="954000" />
+      <workItem from="1577328051220" duration="24197000" />
+      <workItem from="1577408734293" duration="9283000" />
+      <workItem from="1577668296529" duration="10704000" />
+      <workItem from="1577753978936" duration="18302000" />
+      <workItem from="1577842290390" duration="1680000" />
+      <workItem from="1577874105187" duration="6099000" />
+      <workItem from="1577926357706" duration="26426000" />
+      <workItem from="1578016126065" duration="12000000" />
+      <workItem from="1578115367725" duration="25211000" />
+      <workItem from="1578202325548" duration="1537000" />
+      <workItem from="1578203903345" duration="18749000" />
+      <workItem from="1578274869883" duration="14034000" />
+      <workItem from="1578362268929" duration="129000" />
+      <workItem from="1578364053947" duration="10044000" />
+      <workItem from="1578400075336" duration="177000" />
+      <workItem from="1578406029854" duration="4254000" />
+      <workItem from="1578444886923" duration="2734000" />
+      <workItem from="1578453052134" duration="704000" />
+      <workItem from="1578464915462" duration="120000" />
+      <workItem from="1578532462808" duration="3015000" />
+      <workItem from="1578536016654" duration="14000" />
+      <workItem from="1578545583595" duration="24910000" />
+      <workItem from="1578631528092" duration="17103000" />
+      <workItem from="1578664025587" duration="854000" />
+      <workItem from="1578726737644" duration="3849000" />
+      <workItem from="1578826016326" duration="8167000" />
+      <workItem from="1578883311586" duration="297000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cn/anhui/karate/web/servlet/ButtonServlet.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

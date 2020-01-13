@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <style>
+        .format{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+        function addjuryPanel() {
+            $.post("addToJuryPanelServlet_two",{"position":$("#position").val()},
+                function (data) {
+                        alert("添加成功");
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                })
+        }
+        window.onload=function () {
+            $("#addJuryPanel").on('click',function () {
+                addjuryPanel();
+            })
+        }
+
+    </script>
+</head>
+<body>
+<div >
+    <div class="input-group mb-3">
+        <a class="col-lg-3 format">场地信息</a><input type="text" class="form-control  col-lg-7 format" placeholder="场地信息" id="position" style="width: 260px">
+    </div>
+    <div class="row">
+        <div class="col-7">
+            <!--                <div class="icheck-primary">-->
+            <!--                </div>-->
+        </div>
+        <!-- /.col -->
+        <div class="col-5">
+            <button  id="addJuryPanel" class="btn btn-primary btn-block">生成小组</button>
+        </div>
+        <!-- /.col -->
+    </div>
+</div>
+</body>
+</html>
